@@ -4,7 +4,7 @@ export function Plank({ label, children }: { label: string; children: ReactNode 
   return (
     <section className="relative">
       <div className="shelf-stage no-scrollbar overflow-x-auto overflow-y-visible px-6 sm:px-10">
-        <div className="flex min-w-max items-end gap-[3px] pb-0 pt-32">{children}</div>
+        <div className="flex min-w-max items-end gap-[3px] pb-0 pt-14 sm:pt-32">{children}</div>
       </div>
 
       {/* the plank */}
