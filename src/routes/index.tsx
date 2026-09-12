@@ -1,15 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { shelf, allGenres, totalEpisodes, totalMinutes, type Anime } from "@/data/anime";
-import { AnimeCase } from "@/components/shelf/AnimeCase";
+import { shelf, allGenres, totalEpisodes, totalMinutes } from "@/data/anime";
 import { CaseDetail } from "@/components/shelf/CaseDetail";
-import { Plank } from "@/components/shelf/Plank";
+import { CurvedShelf } from "@/components/shelf/CurvedShelf";
 import { RecommendDialog } from "@/components/shelf/RecommendDialog";
 import { listRecommendations, moodSearch, type Recommendation } from "@/lib/anime.functions";
 import { nf, minutesToSpan } from "@/lib/format";
 
-const TITLE = "Anime Shelf — Abhishek Rai A";
+const TITLE = "Abhi's Anime Shelf — 3,600+ Episodes";
 const DESC =
   "A physical shelf of every anime I've watched: 3,600+ episodes as spines you can pull off the rack, plus a mood curator and a shelf for your recommendations.";
 
@@ -20,6 +19,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ShelfPage,
@@ -61,9 +62,6 @@ function ShelfPage() {
     });
   }, [filter, moodIds]);
 
-  const visibleIds = useMemo(() => new Set(visible.map((a) => a.id)), [visible]);
-
-  const rows = useMemo(() => splitRows(shelf, 3), []);
   const span = minutesToSpan(totalMinutes);
   const longest = useMemo(
     () => [...shelf].sort((a, b) => b.episodesWatched - a.episodesWatched)[0]!,
@@ -221,21 +219,9 @@ function ShelfPage() {
         </p>
       </section>
 
-      {/* ---- the shelves ---- */}
-      <div className="mt-14 space-y-16 pb-24">
-        {rows.map((row, i) => (
-          <Plank key={i} label={`Shelf ${String(i + 1).padStart(2, "0")}`}>
-            {row.map((a, j) => (
-              <AnimeCase
-                key={a.id}
-                anime={a}
-                index={j}
-                dimmed={filtering && !visibleIds.has(a.id)}
-                onOpen={setOpenId}
-              />
-            ))}
-          </Plank>
-        ))}
+      {/* ---- scroll-driven collection ---- */}
+      <div className="mt-4">
+        <CurvedShelf items={visible} onOpen={setOpenId} />
       </div>
 
       {/* ---- recommendations ---- */}
@@ -257,7 +243,7 @@ function ShelfPage() {
             <button
               type="button"
               onClick={() => setRecOpen(true)}
-              className="rounded-md border border-accent bg-accent/10 px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
+              className="liquid-glass rounded-md px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent transition-colors hover:text-foreground"
             >
               + Add to the shelf
             </button>
@@ -367,17 +353,4 @@ function Chip({
       {label}
     </button>
   );
-}
-
-function splitRows(list: Anime[], count: number): Anime[][] {
-  const sorted = [...list].sort((a, b) => b.episodesWatched - a.episodesWatched);
-  const rows: Anime[][] = Array.from({ length: count }, () => []);
-  const widths = new Array(count).fill(0);
-  for (const a of sorted) {
-    let i = 0;
-    for (let j = 1; j < count; j++) if (widths[j] < widths[i]) i = j;
-    rows[i]!.push(a);
-    widths[i] += a.width + 3;
-  }
-  return rows.map((r) => r.sort((a, b) => b.episodesWatched - a.episodesWatched));
 }
