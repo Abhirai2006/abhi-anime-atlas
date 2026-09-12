@@ -22,7 +22,9 @@ export function AnimeCase({ anime, index, dimmed, onOpen }: Props) {
     animationDelay: `${Math.min(index * 26, 900)}ms`,
   } as CSSProperties;
 
-  const titleSize = anime.width >= 60 ? 17 : anime.width >= 44 ? 15 : 13;
+  const base = anime.width >= 60 ? 18 : anime.width >= 44 ? 16 : 14;
+  const len = anime.title.length;
+  const titleSize = len > 38 ? base - 5 : len > 26 ? base - 3 : base;
 
   return (
     <button
