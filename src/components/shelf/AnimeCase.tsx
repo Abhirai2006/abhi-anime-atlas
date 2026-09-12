@@ -92,15 +92,16 @@ export function AnimeCase({ anime, index, dimmed, onOpen }: Props) {
               aria-hidden
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 h-full w-full scale-125 object-cover opacity-35 blur-[2px] saturate-150"
+              className="absolute inset-0 h-full w-full scale-110 object-cover opacity-70 blur-[1.5px] saturate-[1.6] contrast-125"
             />
           )}
           <div
             className="absolute inset-0"
             style={{
-              background: `linear-gradient(180deg, ${anime.spine}dd 0%, ${anime.spine}f2 45%, #04060a 100%)`,
+              background: `linear-gradient(180deg, ${anime.spine}99 0%, ${anime.spine}cc 40%, ${anime.spine}e6 78%, #060810 100%)`,
             }}
           />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.14),transparent_38%,transparent_72%,rgba(0,0,0,0.5))]" />
           {/* colour band */}
           <div
             className="absolute left-0 right-0 top-[14px] h-[3px]"
