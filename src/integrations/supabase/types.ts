@@ -14,7 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      recommendations: {
+        Row: {
+          catalogue_id: string | null
+          cover: string | null
+          created_at: string
+          episodes: number | null
+          genres: string[]
+          hidden: boolean
+          id: string
+          ip_hash: string | null
+          note: string | null
+          recommender: string
+          romaji: string | null
+          studio: string | null
+          synopsis: string | null
+          title: string
+          year: number | null
+        }
+        Insert: {
+          catalogue_id?: string | null
+          cover?: string | null
+          created_at?: string
+          episodes?: number | null
+          genres?: string[]
+          hidden?: boolean
+          id?: string
+          ip_hash?: string | null
+          note?: string | null
+          recommender?: string
+          romaji?: string | null
+          studio?: string | null
+          synopsis?: string | null
+          title: string
+          year?: number | null
+        }
+        Update: {
+          catalogue_id?: string | null
+          cover?: string | null
+          created_at?: string
+          episodes?: number | null
+          genres?: string[]
+          hidden?: boolean
+          id?: string
+          ip_hash?: string | null
+          note?: string | null
+          recommender?: string
+          romaji?: string | null
+          studio?: string | null
+          synopsis?: string | null
+          title?: string
+          year?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
