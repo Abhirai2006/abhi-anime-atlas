@@ -150,7 +150,7 @@ export function AnimeCase({ anime, index, dimmed, onOpen }: Props) {
       </div>
 
       {/* hover nameplate */}
-      <div className="pointer-events-none absolute -bottom-16 left-1/2 z-30 w-56 -translate-x-1/2 translate-y-2 rounded-md border border-border/70 bg-card/90 px-3 py-2 text-center opacity-0 shadow-xl backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+      <div className="pointer-events-none absolute -top-[68px] left-1/2 z-30 w-56 -translate-x-1/2 -translate-y-2 rounded-md border border-border/70 bg-card/90 px-3 py-2 text-center opacity-0 shadow-xl backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
         <p className="truncate font-sans text-[13px] font-semibold text-foreground">
           {anime.title}
         </p>
