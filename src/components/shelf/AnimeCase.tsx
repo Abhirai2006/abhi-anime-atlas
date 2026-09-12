@@ -12,7 +12,7 @@ const COVER_W = 164;
 
 export function AnimeCase({ anime, index, dimmed, onOpen }: Props) {
   const rest = `rotateZ(${anime.lean}deg) translateZ(${anime.depth}px)`;
-  const hover = `rotateZ(0deg) rotateY(36deg) translateZ(74px) translateY(-14px)`;
+  const hover = `rotateZ(0deg) rotateY(46deg) translateZ(86px) translateY(-14px)`;
 
   const style = {
     width: anime.width,
@@ -33,7 +33,7 @@ export function AnimeCase({ anime, index, dimmed, onOpen }: Props) {
       aria-label={`${anime.title} — ${anime.episodesWatched} episodes watched`}
       style={style}
       className={[
-        "group relative shrink-0 origin-bottom cursor-pointer select-none rounded-[3px] outline-none",
+        "group relative z-0 shrink-0 origin-bottom cursor-pointer select-none rounded-[3px] outline-none hover:z-30 focus-visible:z-30",
         "shelf-in focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4",
         "focus-visible:ring-offset-background",
         dimmed ? "opacity-25 saturate-0" : "opacity-100",
