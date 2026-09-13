@@ -124,7 +124,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
                   aria-current={index === activeIndex ? "true" : undefined}
                   tabIndex={hidden ? -1 : 0}
                   onClick={() => onOpen(anime.id)}
-                  className="gallery-case group absolute left-1/2 top-1/2 h-[330px] w-[220px] rounded-[5px] outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="gallery-case group absolute left-1/2 top-1/2 aspect-[2/3] h-[clamp(330px,42vh,520px)] rounded-[5px] outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   style={style}
                 >
                   <div className="gallery-case-shell relative h-full w-full overflow-hidden rounded-[5px] border border-foreground/10 bg-card shadow-2xl">
