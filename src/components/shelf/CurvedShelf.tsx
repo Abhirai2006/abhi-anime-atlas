@@ -141,7 +141,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
                         className="flex h-full w-full items-center justify-center p-5 text-center"
                         style={{ backgroundColor: anime.spine }}
                       >
-                        <span className="font-display text-3xl leading-none text-foreground">
+                        <span className="font-display text-3xl leading-none text-case-foreground">
                           {anime.title}
                         </span>
                       </div>
@@ -149,10 +149,10 @@ export function CurvedShelf({ items, onOpen }: Props) {
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-foreground/5" />
                     <div className="case-glint absolute inset-0" />
                     <div className="absolute inset-x-0 bottom-0 p-4 text-left">
-                      <p className="line-clamp-2 font-display text-2xl leading-none text-foreground">
+                      <p className="line-clamp-2 font-display text-2xl leading-none text-case-foreground">
                         {anime.title}
                       </p>
-                      <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-foreground/65">
+                      <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-case-foreground/65">
                         {anime.format === "movie" ? "Film" : `${anime.episodesWatched} episodes`}
                       </p>
                     </div>
@@ -232,8 +232,8 @@ function SwipeShelf({ items, onOpen }: Props) {
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-4">
-                <p className="font-display text-2xl leading-none">{anime.title}</p>
-                <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-foreground/65">
+                <p className="font-display text-2xl leading-none text-case-foreground">{anime.title}</p>
+                <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-case-foreground/65">
                   {anime.format === "movie" ? "Film" : `${anime.episodesWatched} episodes`}
                 </p>
               </div>

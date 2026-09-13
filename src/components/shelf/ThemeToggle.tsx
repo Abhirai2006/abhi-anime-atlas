@@ -75,9 +75,3 @@ export function ThemeToggle() {
     </TooltipProvider>
   );
 }
-
-declare global {
-  interface Document {
-    startViewTransition?: (callback: () => void) => { finished: Promise<void> };
-  }
-}

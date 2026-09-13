@@ -5,6 +5,7 @@ import { shelf, allGenres, totalEpisodes, totalMinutes } from "@/data/anime";
 import { CaseDetail } from "@/components/shelf/CaseDetail";
 import { CurvedShelf } from "@/components/shelf/CurvedShelf";
 import { RecommendDialog } from "@/components/shelf/RecommendDialog";
+import { ThemeToggle } from "@/components/shelf/ThemeToggle";
 import { listRecommendations, moodSearch, type Recommendation } from "@/lib/anime.functions";
 import { nf, minutesToSpan } from "@/lib/format";
 
@@ -119,9 +120,12 @@ function ShelfPage() {
           >
             ← Abhishek Rai A
           </a>
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
-            The Anime Shelf
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="hidden font-mono text-[11px] uppercase tracking-[0.25em] text-primary sm:inline">
+              The Anime Shelf
+            </span>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -136,8 +140,8 @@ function ShelfPage() {
           </span>
         </h1>
         <p className="mt-6 max-w-xl text-balance text-base leading-relaxed text-muted-foreground">
-          Every series I&apos;ve finished sits here as a case on a rack. The longer the run, the
-          thicker the spine. Hover to tilt one out, click to pull it off the shelf.
+          Every series I&apos;ve finished lives here as a case in motion. Scroll through the arc,
+          then click a cover to pull it forward.
         </p>
 
         <dl className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
