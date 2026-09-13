@@ -10,6 +10,7 @@ An interactive record of every anime Abhi has watched—designed as a cinematic 
 - **Mood curator:** Describe a mood in plain language and receive a small set of fitting titles already on the shelf.
 - **Visitor recommendations:** Search a live anime catalogue, add a note, and permanently leave a recommendation.
 - **Responsive experience:** Desktop uses a pinned cinematic scroll scene; mobile uses a native swipe-and-snap gallery.
+- **Portfolio-matched themes:** Dark and light modes share the portfolio palette and remember the visitor's choice.
 - **Accessible motion:** Keyboard navigation, focus states, semantic controls, and a reduced-motion alternative are included.
 
 ## Visual direction

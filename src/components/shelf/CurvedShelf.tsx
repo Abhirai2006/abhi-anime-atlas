@@ -124,7 +124,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
                   aria-current={index === activeIndex ? "true" : undefined}
                   tabIndex={hidden ? -1 : 0}
                   onClick={() => onOpen(anime.id)}
-                  className="gallery-case group absolute left-1/2 top-1/2 h-[330px] w-[220px] rounded-[5px] outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="gallery-case group absolute left-1/2 top-1/2 aspect-[2/3] h-[clamp(330px,42vh,520px)] rounded-[5px] outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   style={style}
                 >
                   <div className="gallery-case-shell relative h-full w-full overflow-hidden rounded-[5px] border border-foreground/10 bg-card shadow-2xl">
@@ -141,7 +141,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
                         className="flex h-full w-full items-center justify-center p-5 text-center"
                         style={{ backgroundColor: anime.spine }}
                       >
-                        <span className="font-display text-3xl leading-none text-foreground">
+                        <span className="font-display text-3xl leading-none text-case-foreground">
                           {anime.title}
                         </span>
                       </div>
@@ -149,10 +149,10 @@ export function CurvedShelf({ items, onOpen }: Props) {
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-foreground/5" />
                     <div className="case-glint absolute inset-0" />
                     <div className="absolute inset-x-0 bottom-0 p-4 text-left">
-                      <p className="line-clamp-2 font-display text-2xl leading-none text-foreground">
+                      <p className="line-clamp-2 font-display text-2xl leading-none text-case-foreground">
                         {anime.title}
                       </p>
-                      <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-foreground/65">
+                      <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-case-foreground/65">
                         {anime.format === "movie" ? "Film" : `${anime.episodesWatched} episodes`}
                       </p>
                     </div>
@@ -232,8 +232,8 @@ function SwipeShelf({ items, onOpen }: Props) {
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-4">
-                <p className="font-display text-2xl leading-none">{anime.title}</p>
-                <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-foreground/65">
+                <p className="font-display text-2xl leading-none text-case-foreground">{anime.title}</p>
+                <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-case-foreground/65">
                   {anime.format === "movie" ? "Film" : `${anime.episodesWatched} episodes`}
                 </p>
               </div>
