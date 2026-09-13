@@ -110,7 +110,7 @@ function ShelfPage() {
   const filtering = moodIds !== null || filter.genre !== null || filter.format !== "all";
 
   return (
-    <div className="grain room-light min-h-screen overflow-x-hidden">
+    <div className="grain room-light min-h-screen overflow-x-clip">
       {/* ---- top bar ---- */}
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 sm:px-10">
