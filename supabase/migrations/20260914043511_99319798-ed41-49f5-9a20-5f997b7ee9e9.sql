@@ -1,0 +1,2 @@
+REVOKE SELECT ON public.recommendations FROM anon, authenticated;
+GRANT SELECT (id, catalogue_id, title, romaji, cover, year, studio, genres, synopsis, episodes, recommender, note, hidden, created_at) ON public.recommendations TO anon, authenticated;
