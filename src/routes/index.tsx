@@ -222,6 +222,14 @@ function ShelfPage() {
           >
             {moodBusy ? "Thinking…" : "Ask the shelf"}
           </button>
+          <button
+            type="button"
+            onClick={pullRandom}
+            className="liquid-glass rounded-md px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent transition-colors hover:text-foreground"
+            title="Pull a random case (press R)"
+          >
+            🎲 Surprise me
+          </button>
         </form>
 
         {moodLine && moodIds && (
