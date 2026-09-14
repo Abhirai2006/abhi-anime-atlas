@@ -9,19 +9,70 @@ import { ThemeToggle } from "@/components/shelf/ThemeToggle";
 import { listRecommendations, moodSearch, type Recommendation } from "@/lib/anime.functions";
 import { nf, minutesToSpan } from "@/lib/format";
 
-const TITLE = "Abhi's Anime Shelf — 3,600+ Episodes";
+const SITE = "https://abhi-anime-atlas.lovable.app";
+const OG_IMAGE = `${SITE}/og-cover.jpg`;
+const TITLE = "Abhi's Anime Shelf — 3,600+ Episodes Watched";
 const DESC =
-  "A physical shelf of every anime I've watched: 3,600+ episodes as spines you can pull off the rack, plus a mood curator and a shelf for your recommendations.";
+  "A 3D shelf of every anime Abhi has watched: 3,600+ episodes as cases you can pull off the rack, a mood curator, and an open slot for your recommendation.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
+      {
+        name: "keywords",
+        content:
+          "anime shelf, anime collection, watched anime list, anime tracker, anime recommendations, 3D anime gallery",
+      },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Abhi's Anime Shelf" },
+      { property: "og:url", content: `${SITE}/` },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "A curved wall of anime cases in a dark lit room" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESC },
+      { name: "twitter:image", content: OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: `${SITE}/` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: TITLE,
+          description: DESC,
+          url: `${SITE}/`,
+          image: OG_IMAGE,
+          inLanguage: "en",
+          author: {
+            "@type": "Person",
+            name: "Abhishek Rai A",
+            url: "https://portfolio-abhirai2006.lovable.app",
+          },
+          about: { "@type": "Thing", name: "Anime" },
+          mainEntity: {
+            "@type": "ItemList",
+            name: "Anime watched by Abhishek Rai A",
+            numberOfItems: shelf.length,
+            itemListElement: shelf.slice(0, 20).map((a, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              item: {
+                "@type": "TVSeries",
+                name: a.title,
+                ...(a.cover ? { image: a.cover } : {}),
+              },
+            })),
+          },
+        }),
+      },
     ],
   }),
   component: ShelfPage,
