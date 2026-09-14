@@ -129,6 +129,22 @@ function ShelfPage() {
     if (next) setOpenId(next.id);
   };
 
+  const pullRandom = useCallback(() => {
+    const list = visible.length ? visible : shelf;
+    const pick = list[Math.floor(Math.random() * list.length)];
+    if (pick) setOpenId(pick.id);
+  }, [visible]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement | null;
+      if (t && /^(INPUT|TEXTAREA)$/.test(t.tagName)) return;
+      if (e.key === "r" || e.key === "R") pullRandom();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [pullRandom]);
+
   async function runMood(e: React.FormEvent) {
     e.preventDefault();
     if (mood.trim().length < 2) return;
