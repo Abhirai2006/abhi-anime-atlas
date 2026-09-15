@@ -53,8 +53,7 @@ export function ShelfQuiz({ onOpen }: { onOpen: (id: string) => void }) {
       .map((a) => ({
         a,
         score:
-          a.genres.filter((g) => want.has(g)).length * 10 +
-          Math.min(a.episodesWatched, 120) / 60,
+          a.genres.filter((g) => want.has(g)).length * 10 + Math.random() * 6,
       }))
       .sort((x, y) => y.score - x.score);
     return scored[0]?.a ?? null;
