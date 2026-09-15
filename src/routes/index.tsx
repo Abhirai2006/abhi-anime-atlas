@@ -307,6 +307,11 @@ function ShelfPage() {
         <CurvedShelf items={visible} onOpen={setOpenId} />
       </div>
 
+      <QuoteWall onOpen={setOpenId} />
+      <HallOfFame onOpen={setOpenId} />
+      <WatchDNA />
+      <ShelfQuiz onOpen={setOpenId} />
+
       {/* ---- recommendations ---- */}
       <section className="border-t border-border/60 bg-card/20">
         <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10">
