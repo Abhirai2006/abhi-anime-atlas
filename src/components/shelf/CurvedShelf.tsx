@@ -82,7 +82,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
         className="relative hidden md:block"
         style={{ height: `${sectionHeight}vh` }}
       >
-        <div className="sticky top-[49px] h-[calc(100vh-49px)] min-h-[620px] overflow-hidden">
+        <div className="sticky top-[49px] h-[calc(100svh-49px)] min-h-[520px] overflow-hidden">
           <div
             className="gallery-aura absolute inset-0 transition-[background] duration-700"
             style={{ "--active-spine": active?.spine ?? "var(--primary)" } as CSSProperties}
