@@ -408,3 +408,40 @@ html.theme-sweep-left::view-transition-new(root) {
     will-change: auto;
   }
 }
+
+/* quote wall + tier chips + dna strands */
+.quote-fade {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 550ms ease,
+    transform 550ms ease;
+}
+.quote-fade.is-on {
+  opacity: 1;
+  transform: translateY(0);
+}
+.tier-chip {
+  box-shadow: 0 6px 18px -12px hsl(var(--foreground) / 0.5);
+}
+.dna-strand {
+  transform-origin: left center;
+  animation: dna-grow 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes dna-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quote-fade,
+  .dna-strand {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
