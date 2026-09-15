@@ -198,6 +198,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
               <ChevronRight aria-hidden size={18} />
             </button>
           </div>
+          </div>
         </div>
       </section>
 
