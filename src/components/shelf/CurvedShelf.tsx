@@ -165,7 +165,8 @@ export function CurvedShelf({ items, onOpen }: Props) {
             })}
           </div>
 
-          <div className="liquid-glass absolute bottom-5 left-1/2 z-[120] flex w-[min(92vw,560px)] -translate-x-1/2 items-center gap-4 px-4 py-3">
+          <div className="absolute bottom-5 left-1/2 z-[120] w-[min(92vw,560px)] -translate-x-1/2">
+          <div className="liquid-glass flex w-full items-center gap-4 px-4 py-3">
             <button
               type="button"
               aria-label="Previous anime"
