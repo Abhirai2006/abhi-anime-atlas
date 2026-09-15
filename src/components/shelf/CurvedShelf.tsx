@@ -94,7 +94,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
             </h2>
           </div>
 
-          <div className="curved-stage absolute inset-x-0 top-[23%] h-[58%]">
+          <div className="curved-stage absolute inset-x-0 top-[22%] h-[52%]">
             {items.map((anime, index) => {
               const offset = index - position;
               const distance = Math.abs(offset);
