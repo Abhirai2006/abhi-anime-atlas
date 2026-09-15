@@ -82,7 +82,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
         className="relative hidden md:block"
         style={{ height: `${sectionHeight}vh` }}
       >
-        <div className="sticky top-[49px] h-[calc(100vh-49px)] min-h-[620px] overflow-hidden">
+        <div className="sticky top-[49px] h-[calc(100svh-49px)] min-h-[520px] overflow-hidden">
           <div
             className="gallery-aura absolute inset-0 transition-[background] duration-700"
             style={{ "--active-spine": active?.spine ?? "var(--primary)" } as CSSProperties}
@@ -94,7 +94,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
             </h2>
           </div>
 
-          <div className="curved-stage absolute inset-x-0 top-[23%] h-[58%]">
+          <div className="curved-stage absolute inset-x-0 top-[22%] h-[52%]">
             {items.map((anime, index) => {
               const offset = index - position;
               const distance = Math.abs(offset);
@@ -124,7 +124,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
                   aria-current={index === activeIndex ? "true" : undefined}
                   tabIndex={hidden ? -1 : 0}
                   onClick={() => onOpen(anime.id)}
-                  className="gallery-case group absolute left-1/2 top-1/2 aspect-[2/3] h-[clamp(330px,42vh,520px)] rounded-[5px] outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="gallery-case group absolute left-1/2 top-1/2 aspect-[2/3] h-[clamp(240px,38vh,500px)] rounded-[5px] outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   style={style}
                 >
                   <div className="gallery-case-shell relative h-full w-full overflow-hidden rounded-[5px] border border-foreground/10 bg-card shadow-2xl">
@@ -165,7 +165,8 @@ export function CurvedShelf({ items, onOpen }: Props) {
             })}
           </div>
 
-          <div className="liquid-glass absolute bottom-[7%] left-1/2 z-[120] flex w-[min(92vw,560px)] -translate-x-1/2 items-center gap-4 px-4 py-3">
+          <div className="absolute bottom-5 left-1/2 z-[120] w-[min(92vw,560px)] -translate-x-1/2">
+          <div className="liquid-glass flex w-full items-center gap-4 px-4 py-3">
             <button
               type="button"
               aria-label="Previous anime"
@@ -196,6 +197,7 @@ export function CurvedShelf({ items, onOpen }: Props) {
             >
               <ChevronRight aria-hidden size={18} />
             </button>
+          </div>
           </div>
         </div>
       </section>
