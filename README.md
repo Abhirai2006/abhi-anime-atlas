@@ -6,7 +6,7 @@
 
 [Live site](https://abhi-anime-atlas.lovable.app) · [Portfolio](https://portfolio-abhirai2006.lovable.app)
 
-![Abhi's Anime Shelf](public/og-cover.jpg)
+![Abhi's Anime Shelf](public/screenshots/gallery.jpg)
 
 </div>
 
