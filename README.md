@@ -6,7 +6,7 @@
 
 [Live site](https://abhi-anime-atlas.lovable.app) · [Portfolio](https://portfolio-abhirai2006.lovable.app)
 
-![Abhi's Anime Shelf](public/og-cover.jpg)
+![Abhi's Anime Shelf](public/screenshots/gallery.jpg)
 
 </div>
 
@@ -31,7 +31,17 @@ Most "anime lists" are spreadsheets with cover art. This one is a physical colle
 | **Dark & light themes** | Both match the portfolio palette, animate with View Transitions, and remember the visitor's choice. |
 | **Responsive** | Desktop gets the pinned cinematic scroll scene; mobile gets a native swipe-and-snap gallery. |
 | **Accessible** | Keyboard navigation, focus states, semantic controls, and a full reduced-motion alternative. |
+| **Hall of Fame** | A tier list of the shelf's heaviest hitters, ranked by time given and reach. |
+| **Watch DNA** | Genre, era, studio and format strands computed live from the collection. |
+| **Quote wall** | Rotating lines from titles on the shelf, fading in and out. |
+| **"Which anime are you?"** | A short quiz that answers with a title actually on the shelf. |
 | **SEO-ready** | Per-page title/description, Open Graph and Twitter cards, canonical URL, `CollectionPage` + `ItemList` JSON-LD, sitemap and robots. |
+
+## Screenshots
+
+| The collection | A case, opened |
+|---|---|
+| ![Scroll-driven gallery](public/screenshots/gallery.jpg) | ![Case detail](public/screenshots/case-detail.jpg) |
 
 ## Visual direction
 
