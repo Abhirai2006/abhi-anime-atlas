@@ -10,8 +10,14 @@ import { ShelfQuiz } from "@/components/shelf/ShelfQuiz";
 import { WatchDNA } from "@/components/shelf/WatchDNA";
 import { RecommendDialog } from "@/components/shelf/RecommendDialog";
 import { ThemeToggle } from "@/components/shelf/ThemeToggle";
-import { listRecommendations, moodSearch, type Recommendation } from "@/lib/anime.functions";
+import {
+  listRecommendations,
+  moodSearch,
+  voteRecommendation,
+  type Recommendation,
+} from "@/lib/anime.functions";
 import { nf, minutesToSpan } from "@/lib/format";
+import { markVoted, votedIds, voterKey } from "@/lib/voter";
 
 const SITE = "https://abhi-anime-atlas.lovable.app";
 const OG_IMAGE = `${SITE}/og-cover.jpg`;
