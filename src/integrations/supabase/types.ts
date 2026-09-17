@@ -14,6 +14,35 @@ export type Database = {
   }
   public: {
     Tables: {
+      recommendation_votes: {
+        Row: {
+          created_at: string
+          id: string
+          recommendation_id: string
+          voter_key: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          recommendation_id: string
+          voter_key: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          recommendation_id?: string
+          voter_key?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recommendation_votes_recommendation_id_fkey"
+            columns: ["recommendation_id"]
+            isOneToOne: false
+            referencedRelation: "recommendations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       recommendations: {
         Row: {
           catalogue_id: string | null
