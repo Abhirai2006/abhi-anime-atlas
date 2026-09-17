@@ -34,6 +34,7 @@ export type Recommendation = {
   recommender: string;
   note: string | null;
   created_at: string;
+  votes: number;
 };
 
 export type CatalogueHit = {
@@ -83,7 +84,8 @@ export const searchCatalogue = createServerFn({ method: "POST" })
 
 export const listRecommendations = createServerFn({ method: "GET" }).handler(
   async (): Promise<Recommendation[]> => {
-    const { data, error } = await publicDb()
+    const db = publicDb();
+    const { data, error } = await db
       .from("recommendations")
       .select(
         "id,title,romaji,cover,year,studio,genres,synopsis,episodes,recommender,note,created_at",
@@ -92,9 +94,43 @@ export const listRecommendations = createServerFn({ method: "GET" }).handler(
       .order("created_at", { ascending: false })
       .limit(60);
     if (error) return [];
-    return (data ?? []) as Recommendation[];
+
+    const rows = (data ?? []) as Omit<Recommendation, "votes">[];
+    const { data: voteRows } = await db
+      .from("recommendation_votes")
+      .select("recommendation_id")
+      .limit(5000);
+
+    const tally = new Map<string, number>();
+    for (const v of (voteRows ?? []) as Array<{ recommendation_id: string }>) {
+      tally.set(v.recommendation_id, (tally.get(v.recommendation_id) ?? 0) + 1);
+    }
+
+    return rows
+      .map((r) => ({ ...r, votes: tally.get(r.id) ?? 0 }))
+      .sort(
+        (a, b) =>
+          b.votes - a.votes || (a.created_at < b.created_at ? 1 : -1),
+      );
   },
 );
+
+export const voteRecommendation = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) =>
+    z
+      .object({ id: z.string().uuid(), voterKey: z.string().min(8).max(64) })
+      .parse(input),
+  )
+  .handler(async ({ data }) => {
+    const { error } = await publicDb()
+      .from("recommendation_votes")
+      .insert({ recommendation_id: data.id, voter_key: data.voterKey });
+    if (error) {
+      if (error.code === "23505") return { ok: false as const, reason: "already" };
+      return { ok: false as const, reason: "failed" };
+    }
+    return { ok: true as const };
+  });
 
 export const addRecommendation = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) =>
