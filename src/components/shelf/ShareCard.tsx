@@ -11,6 +11,15 @@ type Props = {
 const W = 1080;
 const H = 1350;
 
+const INK = "#070a12";
+const FG = "#eaf0fb";
+const PRIMARY = "#3f8cff";
+const MUTED = "rgba(234,240,251,0.58)";
+
+function proxied(src: string) {
+  return src.startsWith("http") ? `/api/public/poster?url=${encodeURIComponent(src)}` : src;
+}
+
 function loadImage(src: string): Promise<HTMLImageElement | null> {
   return new Promise((resolve) => {
     const img = new Image();
@@ -19,12 +28,6 @@ function loadImage(src: string): Promise<HTMLImageElement | null> {
     img.onerror = () => resolve(null);
     img.src = src;
   });
-}
-
-function css(varName: string, fallback: string) {
-  if (typeof window === "undefined") return fallback;
-  const v = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-  return v || fallback;
 }
 
 export function ShareCard({ anime, collectionEpisodes, onClose }: Props) {
