@@ -101,8 +101,11 @@ function ShelfPage() {
   const [recOpen, setRecOpen] = useState(false);
   const [recs, setRecs] = useState<Recommendation[]>([]);
 
+  const [mine, setMine] = useState<string[]>([]);
+
   const askMood = useServerFn(moodSearch);
   const fetchRecs = useServerFn(listRecommendations);
+  const castVote = useServerFn(voteRecommendation);
 
   const loadRecs = useCallback(() => {
     fetchRecs({})
@@ -112,7 +115,23 @@ function ShelfPage() {
 
   useEffect(() => {
     loadRecs();
+    setMine(votedIds());
   }, [loadRecs]);
+
+  const vote = useCallback(
+    async (id: string) => {
+      if (mine.includes(id)) return;
+      setMine((m) => [...m, id]);
+      markVoted(id);
+      setRecs((rs) => rs.map((r) => (r.id === id ? { ...r, votes: r.votes + 1 } : r)));
+      try {
+        await castVote({ data: { id, voterKey: voterKey() } });
+      } catch {
+        /* the local tally still reads right for this visitor */
+      }
+    },
+    [castVote, mine],
+  );
 
   const visible = useMemo(() => {
     const set = moodIds ? new Set(moodIds) : null;
