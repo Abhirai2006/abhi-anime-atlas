@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { Anime } from "@/data/anime";
 import { nf, pct } from "@/lib/format";
+import { ShareCard } from "@/components/shelf/ShareCard";
 
 type Props = {
   anime: Anime;
@@ -11,6 +12,8 @@ type Props = {
 };
 
 export function CaseDetail({ anime, collectionEpisodes, onClose, onPrev, onNext }: Props) {
+  const [cardOpen, setCardOpen] = useState(false);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -181,6 +184,13 @@ export function CaseDetail({ anime, collectionEpisodes, onClose, onPrev, onNext 
             </button>
             <button
               type="button"
+              onClick={() => setCardOpen(true)}
+              className="liquid-glass rounded-md px-4 py-2 font-mono text-[11px] uppercase tracking-widest text-accent transition-colors hover:text-foreground"
+            >
+              ↗ Share card
+            </button>
+            <button
+              type="button"
               onClick={onClose}
               className="ml-auto rounded-md bg-primary px-4 py-2 font-mono text-[11px] uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90"
             >
@@ -189,6 +199,14 @@ export function CaseDetail({ anime, collectionEpisodes, onClose, onPrev, onNext 
           </div>
         </div>
       </div>
+
+      {cardOpen && (
+        <ShareCard
+          anime={anime}
+          collectionEpisodes={collectionEpisodes}
+          onClose={() => setCardOpen(false)}
+        />
+      )}
     </div>
   );
 }

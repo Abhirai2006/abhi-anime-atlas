@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicPosterRouteImport } from './routes/api/public/poster'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicPosterRoute = ApiPublicPosterRouteImport.update({
+  id: '/api/public/poster',
+  path: '/api/public/poster',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/poster': typeof ApiPublicPosterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/poster': typeof ApiPublicPosterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/poster': typeof ApiPublicPosterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/public/poster'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/public/poster'
+  id: '__root__' | '/' | '/api/public/poster'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicPosterRoute: typeof ApiPublicPosterRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/poster': {
+      id: '/api/public/poster'
+      path: '/api/public/poster'
+      fullPath: '/api/public/poster'
+      preLoaderRoute: typeof ApiPublicPosterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicPosterRoute: ApiPublicPosterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
