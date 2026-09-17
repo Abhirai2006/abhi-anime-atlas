@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { Anime } from "@/data/anime";
 import { nf, pct } from "@/lib/format";
+import { ShareCard } from "@/components/shelf/ShareCard";
 
 type Props = {
   anime: Anime;
@@ -11,6 +12,8 @@ type Props = {
 };
 
 export function CaseDetail({ anime, collectionEpisodes, onClose, onPrev, onNext }: Props) {
+  const [cardOpen, setCardOpen] = useState(false);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
