@@ -44,10 +44,10 @@ export function ShareCard({ anime, collectionEpisodes, onClose }: Props) {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
-      const ink = css("--background", "#070a12");
-      const fg = css("--foreground", "#e9eef8");
-      const primary = css("--primary", "#4f8cff");
-      const muted = "rgba(233,238,248,0.6)";
+      const ink = INK;
+      const fg = FG;
+      const primary = PRIMARY;
+      const muted = MUTED;
 
       ctx.fillStyle = ink;
       ctx.fillRect(0, 0, W, H);
@@ -71,7 +71,7 @@ export function ShareCard({ anime, collectionEpisodes, onClose }: Props) {
       ctx.fillRect(px, py, pw, ph);
       ctx.restore();
 
-      const img = anime.cover ? await loadImage(anime.cover) : null;
+      const img = anime.cover ? await loadImage(proxied(anime.cover)) : null;
       if (!alive) return;
       if (img) {
         const scale = Math.max(pw / img.width, ph / img.height);
