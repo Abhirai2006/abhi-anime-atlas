@@ -350,7 +350,8 @@ function ShelfPage() {
               </h2>
               <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
                 There&apos;s always room for one more case. Search any anime ever made, leave your
-                name and a line about why — it stays on the shelf until I watch it.
+                name and a line about why — it stays on the shelf until I watch it. Back the ones
+                you want me to watch first; the most wanted rise to the front.
               </p>
             </div>
             <button
@@ -394,6 +395,21 @@ function ShelfPage() {
                     </p>
                   )}
                   <p className="mt-2 font-hand text-base text-accent">— {r.recommender}</p>
+                  <button
+                    type="button"
+                    onClick={() => vote(r.id)}
+                    disabled={mine.includes(r.id)}
+                    aria-label={`Back ${r.title}`}
+                    className={[
+                      "mt-3 flex w-full items-center justify-center gap-2 rounded-md border px-3 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors",
+                      mine.includes(r.id)
+                        ? "border-primary bg-primary/15 text-primary"
+                        : "border-border bg-secondary text-muted-foreground hover:border-primary/60 hover:text-foreground",
+                    ].join(" ")}
+                  >
+                    <span aria-hidden>▲</span>
+                    {r.votes} {mine.includes(r.id) ? "backed" : "back it"}
+                  </button>
                 </article>
               ))}
             </div>
